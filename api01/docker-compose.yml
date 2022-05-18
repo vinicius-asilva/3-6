@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   api01:
-    image: nodejs:latest
+    image: node:14-alpine
     container_name: api01
     logging:
       driver: syslog
