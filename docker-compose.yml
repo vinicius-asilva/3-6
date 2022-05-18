@@ -1,0 +1,8 @@
+version: '3.4'
+services:
+  api01:
+    image: nodejs:latest
+    container_name: api01
+    logging:
+      driver: syslog
+    restart: on-failure      
