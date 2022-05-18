@@ -1,0 +1,38 @@
+version: '3.4'
+services:
+  nginx:
+    image: nginx:mainline-alpine
+    container_name: nginx-prod
+    logging:
+      driver: syslog
+      options:
+        tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
+    networks:
+      - production
+    ports:
+      - '8080:80'
+    restart: on-failure
+    volumes:
+      - ${PWD}/nginx:/etc/nginx/conf.d:ro
+
+  mariadb:
+    image: mariadb:10.2
+    container_name: db-prod
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: mydb
+      MYSQL_PASSWORD: changeme
+    logging:
+      driver: syslog
+      options:
+        tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
+    networks:
+      - production
+    restart: on-failure
+    volumes:
+     - ${PWD}/mariadb:/var/lib/mysql
+
+networks:
+  production:
+    driver: bridge         
