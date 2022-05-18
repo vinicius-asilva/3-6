@@ -35,4 +35,5 @@ services:
 
 networks:
   production:
+    name: producao
     driver: bridge         
