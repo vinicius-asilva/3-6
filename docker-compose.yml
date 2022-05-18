@@ -5,4 +5,6 @@ services:
     container_name: api01
     logging:
       driver: syslog
-    restart: on-failure      
+    restart: on-failure
+    networks:
+      - production
