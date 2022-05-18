@@ -10,3 +10,7 @@ services:
       - ${PWD}/api01:/home/    
     networks:
       - production
+networks:
+  production:
+    name: producao
+    driver: bridge 
